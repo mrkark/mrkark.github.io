@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>С 8 Марта, Лиза 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+</head>
+<body>
+
+    <h1>🎀 Лиза, найди 5 сердечек 💖</h1>
+    <div id="counter">Найдено: <span id="score">0</span> / 5 💕</div>
+
+    <button onclick="startGame()" id="startButton">Начать игру 🎮</button>
+
+    <div id="grid" style="display: none;"></div>
+
+    <div id="heartMessage">
+        <div id="messageBox">
+            <p id="heartText"></p>
+            <button onclick="closeHeartMessage()">Продолжить 💕</button>
+        </div>
+    </div>
+
+    <div id="finalScreen">
+        <div id="finalBox">
+            <h2>🎉 Ты нашла все сердечки!</h2>
+            <p>Лиза, с 8 Марта! Ты самая чудесная ✨🌸</p>
+            <button onclick="closeFinal()">Закрыть 💕</button>
+        </div>
+    </div>
+
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="index.js"></script>
+</body>
+</html>

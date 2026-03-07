@@ -1,0 +1,310 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #ffb6d9, #ffd6ec);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow-x: hidden;
+    position: relative;
+    padding: 10px;
+}
+
+h1 {
+    font-size: clamp(1.6rem, 6vw, 2.5rem);
+    margin: 5px 0 5px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 8px;
+    line-height: 1.3;
+    word-break: break-word;
+    max-width: 100%;
+}
+
+#counter {
+    margin-top: 5px;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    padding: 6px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(244, 114, 182, 0.3);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+#counter span {
+    font-weight: 700;
+    color: #fff9c4;
+}
+
+#startButton {
+    margin: 10px 0 10px;
+    padding: 10px 25px;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    border-radius: 40px;
+    border: none;
+    background: #ff4da6;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 10px 25px #f06292, 0 4px 0 #b22b6d;
+    transition: 0.1s ease;
+    border: 2px solid #ffe2f0;
+}
+
+#startButton:active {
+    transform: translateY(5px);
+    box-shadow: 0 5px 15px #f06292, 0 2px 0 #b22b6d;
+}
+
+#grid {
+    display: none;
+    grid-template-columns: repeat(6, minmax(40px, 1fr));
+    gap: clamp(6px, 2vw, 15px);
+    justify-content: center;
+    margin: 10px 0;
+    padding: clamp(8px, 2.5vw, 15px);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border-radius: clamp(25px, 5vw, 50px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 650px;
+}
+
+.gift {
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    cursor: pointer;
+    transition: transform 0.2s, filter 0.3s;
+    user-select: none;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 230, 245, 0.5);
+    border-radius: clamp(12px, 3vw, 25px);
+    box-shadow: 0 clamp(3px, 1vw, 8px) 0 #c94f7a, 0 clamp(6px, 2vw, 12px) clamp(12px, 3vw, 25px) rgba(200, 60, 120, 0.4);
+    border: 2px solid white;
+}
+
+.gift:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px #ffe6f0);
+}
+
+.gift:active {
+    transform: scale(0.95);
+}
+
+#heartMessage {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    padding: 15px;
+}
+
+#messageBox {
+    background: white;
+    color: #b22b6d;
+    padding: clamp(18px, 5vw, 30px) clamp(12px, 4vw, 25px);
+    border-radius: 40px 15px 40px 15px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: pop 0.4s ease;
+    box-shadow: 0 30px 50px rgba(190, 40, 100, 0.5);
+    border: 5px solid #ffb3d0;
+}
+
+#messageBox p {
+    font-size: clamp(1.2rem, 4.5vw, 1.7rem);
+    margin-bottom: clamp(12px, 3vw, 25px);
+    line-height: 1.4;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+#messageBox button {
+    margin: 0;
+    padding: clamp(6px, 2.5vw, 10px) clamp(18px, 5vw, 30px);
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    background: #ff80ab;
+    box-shadow: 0 5px 0 #b22b6d;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.1s ease;
+    border: 2px solid #ffe2f0;
+}
+
+#messageBox button:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #b22b6d;
+}
+
+@keyframes pop {
+    from { transform: scale(0.2); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+#finalScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(120, 20, 60, 0.7);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    padding: 15px;
+}
+
+#finalBox {
+    background: #fff0f7;
+    color: #b22b6d;
+    padding: clamp(20px, 6vw, 40px) clamp(15px, 5vw, 30px);
+    border-radius: 80px 20px 80px 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: clamp(4px, 2vw, 8px) solid white;
+    box-shadow: 0 25px 50px #8f386b;
+}
+
+#finalBox h2 {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: clamp(12px, 3vw, 25px);
+    word-break: break-word;
+}
+
+#finalBox p {
+    font-size: clamp(1.2rem, 4.5vw, 1.9rem);
+    font-weight: 500;
+    margin-bottom: clamp(15px, 4vw, 30px);
+    word-break: break-word;
+}
+
+#finalBox button {
+    background: #f65282;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    padding: clamp(8px, 2.5vw, 12px) clamp(25px, 7vw, 40px);
+    border-radius: 40px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 10px 25px #f06292, 0 4px 0 #b22b6d;
+    transition: 0.1s ease;
+    border: 2px solid #ffe2f0;
+}
+
+#finalBox button:active {
+    transform: translateY(5px);
+    box-shadow: 0 5px 15px #f06292, 0 2px 0 #b22b6d;
+}
+
+.petal {
+    position: fixed;
+    top: -10px;
+    font-size: clamp(18px, 5vw, 35px);
+    animation: fall linear forwards;
+    opacity: 0.9;
+    z-index: 50;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+        justify-content: flex-start;
+        padding-top: 15px;
+    }
+    
+    h1 {
+        margin-top: 5px;
+        font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+    }
+    
+    #grid {
+        gap: 5px;
+        border-radius: 20px;
+        padding: 6px;
+    }
+    
+    .gift {
+        border-radius: 10px;
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+    }
+    
+    #messageBox {
+        border-radius: 30px 10px 30px 10px;
+        border-width: 4px;
+    }
+    
+    #finalBox {
+        border-radius: 50px 15px 50px 15px;
+    }
+    
+    #startButton {
+        padding: 8px 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    #grid {
+        grid-template-columns: repeat(6, minmax(32px, 1fr));
+        gap: 4px;
+    }
+    
+    .gift {
+        font-size: 1.6rem;
+        border-width: 1.5px;
+    }
+    
+    #counter {
+        font-size: 1.1rem;
+        padding: 4px 12px;
+    }
+    
+    #startButton {
+        padding: 7px 18px;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    #grid {
+        max-width: 700px;
+    }
+    
+    .gift {
+        font-size: 4rem;
+    }
+}
